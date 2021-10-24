@@ -27,11 +27,13 @@ const styles = StyleSheet.create({
   },
   tasksWrapper: {
     paddingTop: 80,
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: "bold",
   },
-  items: {},
+  items: {
+    marginTop: 32,
+  },
 });
