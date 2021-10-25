@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
+  Keyboard,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
@@ -13,9 +14,12 @@ import Todo from "./components/todo";
 
 export default function App() {
   const [todo, setTodo] = useState();
+  const [todoItems, setTodoItems] = useState([]);
 
   const handleAddTodo = () => {
-    console.log(todo);
+    Keyboard.dismiss();
+    setTodoItems([...todoItems, todo]);
+    setTodo(null);
   };
 
   return (
@@ -25,8 +29,9 @@ export default function App() {
         <Text style={styles.sectionTitle}>Today's To-Do</Text>
         {/* To-do List Items */}
         <View style={styles.items}>
-          <Todo text={"Item 1"} />
-          <Todo text={"Item 2"} />
+          {todoItems.map((todo, index) => {
+            return <Todo key={index} text={todo} />;
+          })}
         </View>
       </View>
 
@@ -37,11 +42,11 @@ export default function App() {
       >
         <TextInput
           style={styles.input}
-          placeholder={"WRITE A TASK"}
+          placeholder={"WRITE A TO-DO"}
           value={todo}
           onChangeText={(text) => setTodo(text)}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleAddTodo()}>
           <View style={styles.addToDoWrapper}>
             <Text style={styles.addButton}>+</Text>
           </View>
