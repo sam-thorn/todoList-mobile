@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -12,6 +12,12 @@ import colors from "./assets/colors";
 import Todo from "./components/todo";
 
 export default function App() {
+  const [todo, setTodo] = useState();
+
+  const handleAddTodo = () => {
+    console.log(todo);
+  };
+
   return (
     <View style={styles.container}>
       {/* Today's ToDos */}
@@ -19,8 +25,8 @@ export default function App() {
         <Text style={styles.sectionTitle}>Today's To-Do</Text>
         {/* To-do List Items */}
         <View style={styles.items}>
-          <Todo text={"Task 1"} />
-          <Todo text={"Task 2"} />
+          <Todo text={"Item 1"} />
+          <Todo text={"Item 2"} />
         </View>
       </View>
 
@@ -29,7 +35,12 @@ export default function App() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.writeToDoWrapper}
       >
-        <TextInput style={styles.input} placeholder={"WRITE A TASK"} />
+        <TextInput
+          style={styles.input}
+          placeholder={"WRITE A TASK"}
+          value={todo}
+          onChangeText={(text) => setTodo(text)}
+        />
         <TouchableOpacity>
           <View style={styles.addToDoWrapper}>
             <Text style={styles.addButton}>+</Text>
