@@ -22,6 +22,12 @@ export default function App() {
     setTodo(null);
   };
 
+  const completeTodo = (item) => {
+    let todosCopy = [...todoItems];
+    todosCopy.splice(item, 1);
+    setTodoItems(todosCopy);
+  };
+
   return (
     <View style={styles.container}>
       {/* Today's ToDos */}
@@ -29,8 +35,12 @@ export default function App() {
         <Text style={styles.sectionTitle}>Today's To-Do</Text>
         {/* To-do List Items */}
         <View style={styles.items}>
-          {todoItems.map((todo, index) => {
-            return <Todo key={index} text={todo} />;
+          {todoItems.map((todo, item) => {
+            return (
+              <TouchableOpacity onPress={() => completeTodo(item)}>
+                <Todo key={item} text={todo} />
+              </TouchableOpacity>
+            );
           })}
         </View>
       </View>
