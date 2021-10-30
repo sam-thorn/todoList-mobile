@@ -9,12 +9,22 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useFonts } from "expo-font";
 import colors from "./assets/colors";
 import Todo from "./components/todo";
 
 export default function App() {
   const [todo, setTodo] = useState();
   const [todoItems, setTodoItems] = useState([]);
+
+  const [loaded] = useFonts({
+    "Poppins-Black": require("./assets/fonts/Poppins-Black.ttf"),
+    "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   const handleAddTodo = () => {
     Keyboard.dismiss();
@@ -78,6 +88,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: "bold",
+    fontFamily: "Poppins-Regular",
   },
   items: {
     marginTop: 32,
@@ -97,7 +108,7 @@ const styles = StyleSheet.create({
     borderRadius: 64,
     borderColor: colors.silvergrey,
     borderWidth: 1,
-    width: 250,
+    width: 260,
   },
   addToDoWrapper: {
     width: 64,
