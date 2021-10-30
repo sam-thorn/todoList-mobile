@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     height: 24,
     borderRadius: 4,
     marginRight: 16,
-    backgroundColor: colors.lightblue,
+    backgroundColor: colors.brightgreen,
     opacity: 0.4,
   },
   itemText: {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   circle: {
     width: 12,
     height: 12,
-    borderColor: colors.lightblue,
+    borderColor: colors.lightpurple,
     borderWidth: 2,
     borderRadius: 8,
   },

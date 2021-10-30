@@ -12,14 +12,16 @@ import {
 import { useFonts } from "expo-font";
 import colors from "./assets/colors";
 import Todo from "./components/todo";
+import GradientText from "./components/gradientText";
 
 export default function App() {
   const [todo, setTodo] = useState();
   const [todoItems, setTodoItems] = useState([]);
 
   const [loaded] = useFonts({
-    "Poppins-Black": require("./assets/fonts/Poppins-Black.ttf"),
-    "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Black": require("./assets/fonts/Poppins/Poppins-Black.ttf"),
+    "Poppins-Regular": require("./assets/fonts/Poppins/Poppins-Regular.ttf"),
+    "Poppins-Light": require("./assets/fonts/Poppins/Poppins-Light.ttf"),
   });
 
   if (!loaded) {
@@ -42,7 +44,8 @@ export default function App() {
     <View style={styles.container}>
       {/* Today's ToDos */}
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's To-Do</Text>
+        <GradientText style={styles.nameTitle}>Hi Zortob 🖖</GradientText>
+        <Text style={styles.sectionTitle}>These Are Today's Tasks:</Text>
         {/* To-do List Items */}
         <View style={styles.items}>
           {todoItems.map((todo, item) => {
@@ -62,7 +65,7 @@ export default function App() {
       >
         <TextInput
           style={styles.input}
-          placeholder={"WRITE A TO-DO"}
+          placeholder={"ADD A TASK..."}
           value={todo}
           onChangeText={(text) => setTodo(text)}
         />
@@ -79,11 +82,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.lightgrey,
+    backgroundColor: colors.lightpurple,
   },
   tasksWrapper: {
     paddingTop: 80,
     paddingHorizontal: 18,
+  },
+  nameTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    fontFamily: "Poppins-Black",
   },
   sectionTitle: {
     fontSize: 24,
@@ -109,6 +117,7 @@ const styles = StyleSheet.create({
     borderColor: colors.silvergrey,
     borderWidth: 1,
     width: 260,
+    fontFamily: "Poppins-Light",
   },
   addToDoWrapper: {
     width: 64,
@@ -121,6 +130,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   addButton: {
+    fontSize: 24,
+    fontFamily: "Poppins-Regular",
     color: colors.silvergrey,
   },
 });
