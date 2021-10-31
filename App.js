@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ScrollView,
 } from "react-native";
 import { useFonts } from "expo-font";
 import colors from "./assets/colors";
@@ -20,10 +21,12 @@ export default function App() {
 
   const [loaded] = useFonts({
     "Poppins-Black": require("./assets/fonts/Poppins/Poppins-Black.ttf"),
+    "Poppins-Bold": require("./assets/fonts/Poppins/Poppins-Bold.ttf"),
     "Poppins-Regular": require("./assets/fonts/Poppins/Poppins-Regular.ttf"),
     "Poppins-Light": require("./assets/fonts/Poppins/Poppins-Light.ttf"),
   });
 
+  // This conditional relates to loading custom fonts
   if (!loaded) {
     return null;
   }
@@ -42,8 +45,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar />
       {/* Today's ToDos */}
-      <View style={styles.tasksWrapper}>
+      <ScrollView style={styles.tasksWrapper}>
         <GradientText style={styles.nameTitle}>Hi Zortob 🖖</GradientText>
         <Text style={styles.sectionTitle}>These Are Today's Tasks:</Text>
         {/* To-do List Items */}
@@ -56,25 +60,28 @@ export default function App() {
             );
           })}
         </View>
-      </View>
+      </ScrollView>
 
       {/* Write a Task */}
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.writeToDoWrapper}
-      >
-        <TextInput
-          style={styles.input}
-          placeholder={"ADD A TASK..."}
-          value={todo}
-          onChangeText={(text) => setTodo(text)}
-        />
-        <TouchableOpacity onPress={() => handleAddTodo()}>
-          <View style={styles.addToDoWrapper}>
-            <Text style={styles.addButton}>+</Text>
-          </View>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+      <View style={styles.addTaskWrapper}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.writeToDoWrapper}
+        >
+          <TextInput
+            style={styles.input}
+            placeholder={"ADD A TASK..."}
+            value={todo}
+            onChangeText={(text) => setTodo(text)}
+          />
+          <TouchableOpacity onPress={() => handleAddTodo()}>
+            <View style={styles.addToDoWrapper}>
+              <GradientText style={styles.addButton}>+</GradientText>
+              {/* <Text style={styles.addButton}>+</Text> */}
+            </View>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
+      </View>
     </View>
   );
 }
@@ -100,6 +107,11 @@ const styles = StyleSheet.create({
   },
   items: {
     marginTop: 32,
+    marginBottom: 68,
+  },
+  addTaskWrapper: {
+    height: 142,
+    backgroundColor: colors.lightpurple,
   },
   writeToDoWrapper: {
     position: "absolute",
@@ -131,7 +143,7 @@ const styles = StyleSheet.create({
   },
   addButton: {
     fontSize: 24,
-    fontFamily: "Poppins-Regular",
+    fontWeight: "bold",
     color: colors.silvergrey,
   },
 });

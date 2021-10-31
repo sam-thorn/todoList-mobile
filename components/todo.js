@@ -9,7 +9,7 @@ const Todo = (props) => {
         <View style={styles.square} />
         <Text style={styles.itemText}>{props.text}</Text>
       </View>
-      <View style={styles.circle}></View>
+      {/* <View style={styles.circle}></View> */}
     </View>
   );
 };
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   itemText: {
-    maxWidth: "80%",
+    maxWidth: "90%",
   },
   circle: {
     width: 12,
