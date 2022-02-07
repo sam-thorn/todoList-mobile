@@ -19,6 +19,7 @@ export default function App() {
   const [todo, setTodo] = useState();
   const [todoItems, setTodoItems] = useState([]);
 
+  // We're using these custom fonts
   const [loaded] = useFonts({
     "Poppins-Black": require("./assets/fonts/Poppins/Poppins-Black.ttf"),
     "Poppins-Bold": require("./assets/fonts/Poppins/Poppins-Bold.ttf"),
@@ -47,7 +48,7 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar />
       {/* Today's ToDos */}
-      <ScrollView style={styles.tasksWrapper}>
+      <ScrollView style={styles.tasksWrapper} bouncesZoom="true">
         <GradientText style={styles.nameTitle}>Hi Zortob 🖖</GradientText>
         <Text style={styles.sectionTitle}>These Are Today's Tasks:</Text>
         {/* To-do List Items */}
