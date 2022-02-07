@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import colors from "../assets/colors";
+import CompleteTodo from "./CompleteTodo";
 
 const Todo = (props) => {
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
-        <View style={styles.square} />
+        <CompleteTodo />
         <Text style={styles.itemText}>{props.text}</Text>
       </View>
       {/* <View style={styles.circle}></View> */}
@@ -28,14 +29,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     flexWrap: "wrap",
-  },
-  square: {
-    width: 24,
-    height: 24,
-    borderRadius: 4,
-    marginRight: 16,
-    backgroundColor: colors.brightgreen,
-    opacity: 0.4,
   },
   itemText: {
     maxWidth: "90%",
